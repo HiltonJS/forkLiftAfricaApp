@@ -1,8 +1,34 @@
-import React from "react";
+import React,{useState} from "react";
 import "./login.css"
+import { Component } from "react";
+import {useDispatch} from 'react-redux'
+import {login} from "../../redux/user/userActions"
 
 
-const FormPage = () => {
+
+class LogIn extends Component{
+
+ state={
+     email:'',
+     password:"",
+
+ }
+ handleSubmit=(event)=>{
+     event.preventDefault();
+    const userData={
+        email:this.state.email,
+        password:this.state.password
+    }
+    this.props.login(userData,this.props.history)
+ }
+
+ handleChange=(event)=>{
+   
+   this.setState({
+       [event.target.name]:event.target.value
+   })
+ }
+render(){
 return (
 <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
     <div class="card card0 border-0">
@@ -15,28 +41,17 @@ return (
             </div>
             <div class="col-lg-6">
                 <div class="card2 card border-0 px-4 py-5">
-                    <div class="row mb-4 px-3">
-                        <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
-                        <div class="facebook text-center mr-3">
-                            <div class="fa fa-facebook"></div>
-                        </div>
-                        <div class="twitter text-center mr-3">
-                            <div class="fa fa-twitter"></div>
-                        </div>
-                        <div class="linkedin text-center mr-3">
-                            <div class="fa fa-linkedin"></div>
-                        </div>
-                    </div>
+                  
                     <div class="row px-3 mb-4">
                         <div class="line"></div> <small class="or text-center">Or</small>
                         <div class="line"></div>
                     </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Email Address</h6>
-                        </label> <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address"/> </div>
+                        </label> <input class="mb-4" type="text" name="email"  value={this.state.email}onChange={ this.handleChange}placeholder="Enter a valid email address"/> </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Password</h6>
-                        </label> <input type="password" name="password" placeholder="Enter password"/> </div>
+                        </label> <input type="password" value={this.state.password} name="password" placeholder="Enter password"/> </div>
                     <div class="row px-3 mb-4">
                         <div class="custom-control custom-checkbox custom-control-inline"> <input id="chk1" type="checkbox" name="chk" class="custom-control-input"/> <label for="chk1" class="custom-control-label text-sm">Remember me</label> </div> <a href="#" class="ml-auto mb-0 text-sm">Forgot Password?</a>
                     </div>
@@ -54,5 +69,5 @@ return (
 </div>
 );
 };
-
-export default FormPage;
+}
+export default LogIn;
