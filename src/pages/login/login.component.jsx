@@ -2,28 +2,25 @@ import React, { useState } from "react";
 import "./login.css";
 import { Component } from "react";
 import { connect } from "react-redux";
+import {useDispatch,useSelector} from 'react-redux';
 import { login } from "../../redux/user/userActions";
 
-class LogIn extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
-  handleSubmit = (event) => {
+const LogIn=({history})=> {
+
+  const [email,setEmail]=useState('');
+  const [password,setPassword]=useState('')
+
+  const dispatch=useDispatch()
+  
+  const handleSubmit = (event) => {
     event.preventDefault();
     const userData = {
-      email: this.state.email,
-      password: this.state.password,
+      email: email,
+      password: password,
     };
-    this.props.login(userData, this.props.history);
+  dispatch(login(userData,history));
   };
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
-  };
-  render() {
     return (
       <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
         <div class="card card0 border-0">
@@ -62,10 +59,9 @@ class LogIn extends Component {
                   <input
                     class="mb-4"
                     type="text"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleChange}
-                    placeholder="Enter a valid email address"
+                    name="email"                  
+                    onChange={(event)=>{setEmail(event.target.value)}}
+                   placeholder="Enter a valid email address"
                   />{" "}
                 </div>
                 <div class="row px-3">
@@ -75,7 +71,7 @@ class LogIn extends Component {
                   </label>{" "}
                   <input
                     type="password"
-                    value={this.state.password}
+                    onChange={(event=>{setPassword(event.target.value)})}
                     name="password"
                     placeholder="Enter password"
                   />{" "}
@@ -99,7 +95,7 @@ class LogIn extends Component {
                 </div>
                 <div class="row mb-3 px-3">
                   {" "}
-                  <button type="submit" class="btn btn-blue text-center">
+                  <button type="submit" class="btn btn-blue text-center" onClick={handleSubmit}>
                     Login
                   </button>{" "}
                 </div>
@@ -131,5 +127,5 @@ class LogIn extends Component {
       </div>
     );
   }
-}
+
 export default LogIn;

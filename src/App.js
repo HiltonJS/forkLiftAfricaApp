@@ -6,11 +6,34 @@ import Home from "./pages/home/home.component";
 import { Route, Switch } from "react-router-dom";
 import LogIn from "./pages/login/login.component";
 import CreateBirthPage from "./pages/create BirthCertificate/createBirth.jsx";
+import axios from "axios";
+import { SET_AUTHENTICATED } from "./redux/types";
+import { SET_UNAUTHENTICATED } from "./redux/types";
+import jwtDecode from "jwt-decode";
+import { logout } from "./redux/user/userActions";
+import store from "./redux/store";
+import AuthRoute from "./util/AuthRoute";
+
+axios.defaults.baseURL = "http://localhost:4000";
+
+const token = localStorage.FBIToken;
+if (token) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logout());
+    window.location.href = "/login";
+  } else {
+    store.dispatch({ type: SET_AUTHENTICATED });
+    axios.defaults.headers.common["Authrization"] = token;
+  }
+} else {
+  store.dispatch({ type: SET_UNAUTHENTICATED });
+}
 
 function App() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <AuthRoute exact path="/" component={Home} />
       <Route exact path="/login" component={LogIn} />
       <Route exact path="/createBirth" component={CreateBirthPage} />
     </Switch>

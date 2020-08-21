@@ -7,7 +7,8 @@ export const login = (userdata, history) => (dispatch) => {
     .post("users/login", userdata)
     .then((res) => {
       setAuthorisedHeader(res.data.token);
-      dispatch({ type: SET_AUTHENTICATED });
+      dispatch({ type: SET_AUTHENTICATED, payload: res.data.user });
+      history.push("/");
     })
     .catch((err) => {
       console.log(err);
