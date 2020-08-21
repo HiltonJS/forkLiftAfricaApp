@@ -12,6 +12,11 @@ export const userReducer = (state = intialState, action) => {
         authenticated: true,
         loading: false,
       };
+    case SET_UNAUTHENTICATED:
+      return {
+        ...state,
+        authenticated: false,
+      };
     default:
       return state;
   }
