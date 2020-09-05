@@ -16,6 +16,9 @@ import store from "./redux/store";
 import AuthRoute from "./util/AuthRoute";
 import SignUp from "./pages/signup/signup.component";
 import CreateJob from "./pages/createJob/createJob.component";
+import Jobs from "./pages/jobs/jobs.component";
+
+import SingleJob from "./pages/singleJob/singleJob.component";
 
 axios.defaults.baseURL = "http://localhost:4003";
 
@@ -44,6 +47,8 @@ function App() {
       <AuthRoute exact path="/singleMachine" component={SingleFork} />
       <AuthRoute exact path="/createBirth" component={CreateBirthPage} />
       <AuthRoute exact path="/createJob" component={CreateJob} />
+      <AuthRoute exact path="/jobs" component={Jobs} />
+      <AuthRoute exact path="/singlejob" component={SingleJob} />
     </Switch>
   );
 }

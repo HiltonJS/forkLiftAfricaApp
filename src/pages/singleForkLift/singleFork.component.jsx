@@ -4,13 +4,15 @@ import Button from '../../components/button/button.component';
 
 import { Link } from 'react-router-dom';
 
+
 const SingleFork = (props) => {
    
     return (
     <Fragment>
-        <NavbarPage/>
+     <NavbarPage/>
     
-      {!props.location.fork?<div><Link to="/">....Opps Somwthing went wrong Click here</Link></div>:(  <div className="container pt-4">
+      {!props.location.fork?<div className="m-4"><Link to="/">....Opps Somwthing went wrong Click here</Link></div>:(  
+      <div className="container pt-4">
         <form>
           <div class="form-row">
             <div class="form-group col-md-6">

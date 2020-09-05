@@ -23,6 +23,10 @@ const NavbarPage =()=> {
       <li class="nav-item">
         <Link class="nav-link" to="/createJob">Create Jobs</Link>
       </li>
+      <li class="nav-item">
+        <Link class="nav-link" to="/jobs">View Jobs</Link>
+      </li>
+    
     
     </ul>
    

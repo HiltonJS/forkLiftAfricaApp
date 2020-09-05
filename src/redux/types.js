@@ -6,4 +6,7 @@ export const LOADING_DATA = "LOADING_DATA";
 export const SET_DATA = "SET_DATA";
 export const POST_DATA = "POST_DATA";
 export const SET_ERROR = "SET_ERROR";
+export const SET_JOBS = "SET_JOBS";
+export const POST_JOB = "POST_JOB";
 export const UNSET_ERROR = "UNSET_ERROR";
+export const UNSET_MODAL = "UNSET_MODAL";
