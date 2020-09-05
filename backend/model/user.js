@@ -11,6 +11,11 @@ const userSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
+  level: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   email: {
     type: String,
     required: true,
@@ -26,18 +31,6 @@ const userSchema = mongoose.Schema({
     {
       token: {
         type: String,
-        required: true,
-      },
-    },
-  ],
-  orders: [
-    {
-      productName: {
-        type: String,
-        required: true,
-      },
-      quantity: {
-        type: Number,
         required: true,
       },
     },

@@ -1,21 +1,22 @@
-import { LOADING_DATA, SET_DATA, POST_DATA } from "../types";
+import { LOADING_DATA, SET_DATA, POST_DATA, SET_ERROR } from "../types";
 import axios from "axios";
 
 export const getData = () => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios.get("/inventory").then((res) => {
-    dispatch({ SET_DATA, payload: res.data });
+    dispatch({ type: SET_DATA, payload: res.data.inventory });
   });
 };
 
-export const postInventoryDAta = (inventoryData) => (dispatch) => {
-  dispatch({ LOADING_DATA });
+export const postInventoryData = (inventoryData) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
   axios
     .post("/inventory", inventoryData)
     .then((res) => {
-      dispatch({ POST_DATA, payload: res.data });
+      dispatch({ type: POST_DATA });
     })
     .catch((error) => {
+      dispatch({ type: SET_ERROR, payload: error });
       console.log(error);
     });
 };

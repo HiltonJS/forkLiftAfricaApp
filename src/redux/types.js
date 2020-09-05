@@ -4,4 +4,6 @@ export const SET_USER = "SET_USER";
 export const LOADING_USER = "LOADING_USER";
 export const LOADING_DATA = "LOADING_DATA";
 export const SET_DATA = "SET_DATA";
-export const POST_DATA = "SET_DATA";
+export const POST_DATA = "POST_DATA";
+export const SET_ERROR = "SET_ERROR";
+export const UNSET_ERROR = "UNSET_ERROR";

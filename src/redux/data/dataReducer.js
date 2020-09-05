@@ -1,8 +1,8 @@
-import { LOADING_DATA, SET_DATA } from "../types";
+import { LOADING_DATA, SET_DATA, POST_DATA } from "../types";
 
 const initialState = {
   loading: false,
-  data: {},
+  inventory: [],
   errors: "",
 };
 
@@ -16,7 +16,12 @@ export const dataReducer = (state = initialState, action) => {
     case SET_DATA:
       return {
         ...state,
-        data: action.payload,
+        inventory: action.payload,
+      };
+    case POST_DATA:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

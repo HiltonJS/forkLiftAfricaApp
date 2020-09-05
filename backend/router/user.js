@@ -14,6 +14,17 @@ router.post("/users", async (req, res) => {
   }
 });
 
+router.get("/users", (req, res) => {
+  User.find()
+    .then((users) => {
+      console.log(users);
+      res.send({ users });
+    })
+    .catch((err) => {
+      res.send({ message: err });
+    });
+});
+
 router.post("/users/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;

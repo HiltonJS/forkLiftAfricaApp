@@ -1,8 +1,51 @@
 import React, { Fragment, useState } from "react";
 
 import NavbarPage from "../../components/navbar/navbar.component";
+import {useDispatch} from 'react-redux';
+import {postInventoryData} from '../../redux/data/dataActions'
+import    ErrorHandler from '../../components/errorHandler/errorHandler.component'
+
+
+
+
+const ValidationMessage =(props)=>{
+  if(!props.valid){
+  return(<div className="error-msg"> {props.message}</div>)
+  }
+  return null;
+}
 
 const CreateBirthPage = () => {
+
+  const validateForm=()=>{
+    setformValid( makeValid&&
+      modelValid&&
+      capacityValid&&
+      serialValid&&
+      liftSizeValid&&
+      forkLengthValid&&
+      mastTypeValid&&
+      attachmentsValid&&
+      sideShiftValid&&
+      tiltTypeValid&&
+      engineNumberValid&&
+      typeOfFuelValid&&
+      frontTyreSizeValid&&
+      engineOilFilterValid&&
+      rearTyreSizeValid&&
+      engineNameValid&&
+      transmissionOilFilterValid&&
+      fuelFilterValid&&
+      hydralicOilFilterValid&&
+      airInnerFilterValid&&
+      airOuterFilterValid&&
+      eletricChargeTypeValid&&
+      engineCapacityValid)
+  }
+
+  const dispatch= useDispatch()
+
+
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
   const [capacity, setCapacity] = useState("");
@@ -19,7 +62,6 @@ const CreateBirthPage = () => {
   const [engineOilFilter, setEngineOilFilter] = useState("");
   const [rearTyreSize, setRearTyreSize] = useState("");
   const [engineName,setEngineName]=useState("")
-
   const [transmissionOilFilter, setTransmissionOilFilter] = useState("");
   const [fuelFilter, setFuelFilter] = useState("");
   const [hydralicOilFilter, setHydralicOilFilter] = useState("");
@@ -27,6 +69,34 @@ const CreateBirthPage = () => {
   const [airOuterFilter, setAirOuterFilter] = useState("");
   const [eletricChargeType, setMakeEletricChargeType] = useState("");
   const [engineCapacity, setEngineCapacity] = useState("");
+
+  const [makeValid, setMakeValid] = useState(false);
+  const [modelValid, setModelValid] = useState(false);
+  const [capacityValid, setCapacityValid] = useState(false);
+  const [serialValid, setSerialValid] = useState(false);
+  const [liftSizeValid, setLiftSizeValid] = useState(false);
+  const [forkLengthValid, setForklengthValid] = useState(false);
+  const [mastTypeValid, setMastTypeValid] = useState(false);
+  const [attachmentsValid, setAttachmentsValid] = useState(false);
+  const [sideShiftValid, setSideShiftValid] = useState(false);
+  const [tiltTypeValid, setTiltTypeValid] = useState(false);
+  const [engineNumberValid, setEngineNumberValid] = useState(false);
+  const [typeOfFuelValid,setTypeOfFuelValid]=useState(false)
+  const [frontTyreSizeValid, setFrontTyreSizeValid] = useState(false);
+  const [engineOilFilterValid, setEngineOilFilterValid] = useState(false);
+  const [rearTyreSizeValid, setRearTyreSizeValid] = useState(false);
+  const [engineNameValid,setEngineNameValid]=useState(false)
+  const [transmissionOilFilterValid, setTransmissionOilFilterValid] = useState(false);
+  const [fuelFilterValid, setFuelFilterValid] = useState(false);
+  const [hydralicOilFilterValid, setHydralicOilFilterValid] = useState(false);
+  const [airInnerFilterValid, setAirInnerFilterValid] = useState(false);
+  const [airOuterFilterValid, setAirOuterFilterValid] = useState(false);
+  const [eletricChargeTypeValid, setMakeEletricChargeTypeValid] = useState(false);
+  const [engineCapacityValid, setEngineCapacityValid] = useState(false);
+  const [formValid,setformValid]= useState(false);
+  const [errorMsg,setErrorMsg]=useState(false);
+
+
 
  
   const handleSubmit = (event) => {
@@ -56,11 +126,14 @@ const CreateBirthPage = () => {
       eletricChargeType,
       engineCapacity
     }
+
+    dispatch(postInventoryData(record))
     console.log(record);
   };
 
   return (
     <Fragment>
+         <ErrorHandler />
       <NavbarPage />
       <div className="container pt-4">
         <form>
@@ -98,7 +171,7 @@ const CreateBirthPage = () => {
               />
             </div>
             <div class="form-group col-md-6">
-              <label for="inputPassword4">Capacity</label>
+              <label for="inputCapacity">Capacity</label>
               <input
                 type="text"
                 name="capacity"
@@ -137,7 +210,7 @@ const CreateBirthPage = () => {
                 type="text"
                 name="mastType"
                 class="form-control"
-                id="inputEmail4"
+                id="inputMastType"
                 onChange={event=>setMastType(event.target.value)}
               />
             </div>
@@ -147,7 +220,7 @@ const CreateBirthPage = () => {
                 type="text"
                 name="attachments"
                 class="form-control"
-                id="inputPassword4"
+                id="inputAttachments"
                 onChange={event=>setAttachments(event.target.value)}
               />
             </div>
