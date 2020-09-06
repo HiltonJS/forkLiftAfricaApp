@@ -19,6 +19,7 @@ import CreateJob from "./pages/createJob/createJob.component";
 import Jobs from "./pages/jobs/jobs.component";
 
 import SingleJob from "./pages/singleJob/singleJob.component";
+import NavbarPage from "./components/navbar/navbar.component";
 
 axios.defaults.baseURL = "http://localhost:4003";
 
@@ -38,18 +39,22 @@ if (token) {
 
 function App() {
   return (
-    <Switch>
-      <AuthRoute exact path="/" component={Home} />
-      <Route exact path="/login" component={LogIn} />
-      <Route exact path="/signup" component={SignUp} />
-      <AuthRoute exact path="/createBirth" component={CreateBirthPage} />
-      <AuthRoute exact path="/createBirth" component={CreateBirthPage} />
-      <AuthRoute exact path="/singleMachine" component={SingleFork} />
-      <AuthRoute exact path="/createBirth" component={CreateBirthPage} />
-      <AuthRoute exact path="/createJob" component={CreateJob} />
-      <AuthRoute exact path="/jobs" component={Jobs} />
-      <AuthRoute exact path="/singlejob" component={SingleJob} />
-    </Switch>
+    <>
+      <Switch></Switch>
+      <NavbarPage>
+        <Switch>
+          <AuthRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={LogIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <AuthRoute exact path="/createBirth" component={CreateBirthPage} />
+
+          <AuthRoute exact path="/singleMachine" component={SingleFork} />
+          <AuthRoute exact path="/createJob" component={CreateJob} />
+          <AuthRoute exact path="/jobs" component={Jobs} />
+          <AuthRoute exact path="/singlejob" component={SingleJob} />
+        </Switch>
+      </NavbarPage>
+    </>
   );
 }
 
