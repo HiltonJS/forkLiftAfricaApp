@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 
 import NavbarPage from "../../components/navbar/navbar.component";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { postCreateJob } from "../../redux/data/dataActions";
 import ErrorHandler from "../../components/errorHandler/errorHandler.component";
 import ModalPage from "../../components/modal/modal.component";
@@ -26,7 +26,7 @@ const CreateJob = () => {
   //       sideShiftValid&&
   //     )
   //   }
-
+  const successMessage= useSelector(state=>state.data.successMessage)
   const dispatch = useDispatch();
 
   const [client, setclient] = useState("");
@@ -64,8 +64,9 @@ const CreateJob = () => {
   return (
     <Fragment>
       <ErrorHandler />
-      <NavbarPage />
-      <ModalPage/>
+      <ModalPage>
+       {successMessage}
+      </ModalPage>
       <div className="container pt-4">
         <form>
           <div class="form-row">

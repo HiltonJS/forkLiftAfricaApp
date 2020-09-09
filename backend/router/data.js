@@ -17,22 +17,12 @@ router.post("/inventory", async (req, res) => {
     res.status(400).send({ message: error });
   }
 });
-router.post("/jobs", async (req, res) => {
-  try {
-    const job = new JobSheet(req.body);
-    await job.save();
-
-    res.status(201).send({ message: "Successfully finished your Job " });
-  } catch (error) {
-    res.status(400).send({ message: error });
-  }
-});
 router.post("/jobCreation", async (req, res) => {
   try {
     const emailAdress = req.body.assignedEmail;
     const problem = req.body.problem;
-    const jobCreation = new JobSheetCreation(req.body);
-    await jobCreation.save();
+    const job = new JobSheet(req.body);
+    await job.save();
     let mailTransporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -58,9 +48,17 @@ router.post("/jobCreation", async (req, res) => {
 
     res.status(201).send({ message: "Successfully created a job  " });
   } catch (error) {
-    res.status(400).send({ message: error });
+    res.status(400).send({ message: "could not enter " });
   }
 });
+// router.post("/jobCreation", async (req, res) => {
+//   try {
+//     const emailAdress = req.body.assignedEmail;
+//     const problem = req.body.problem;
+//     const jobCreation = new JobSheetCreation(req.body);
+//     await jobCreation.save();
+
+// });
 
 router.get("/jobs", (req, res) => {
   JobSheetCreation.find()

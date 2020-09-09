@@ -51,7 +51,7 @@ function App() {
           <AuthRoute exact path="/singleMachine" component={SingleFork} />
           <AuthRoute exact path="/createJob" component={CreateJob} />
           <AuthRoute exact path="/jobs" component={Jobs} />
-          <AuthRoute exact path="/singlejob" component={SingleJob} />
+          <AuthRoute exact path="/jobs/:_id" component={SingleJob} />
         </Switch>
       </NavbarPage>
     </>

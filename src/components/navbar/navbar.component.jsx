@@ -15,6 +15,12 @@ const NavbarPage =(props)=> {
         <li>
           <Link to="/">Home</Link>
         </li>
+        <li>
+              <Link to="/jobs">View All Jobs </Link>
+            </li>
+            <li>
+              <Link to="/createJob">Create Jobs</Link>
+            </li>
         <li class="active">
           <Link
             to="#homeSubmenu"
@@ -25,23 +31,23 @@ const NavbarPage =(props)=> {
           >
           <ul class="collapse list-unstyled" id="homeSubmenu">
             <li>
-              <Link to="#">View All Jobs </Link>
+              <Link to="">View All Jobs </Link>
             </li>
             <li>
-              <Link href="/createJob">Create Jobs</Link>
+              <Link to="/createJob">Create Jobs</Link>
             </li>
             <li>
-              <Link href="#">Delete Jobs</Link>
+              <Link to="#">Delete Jobs</Link>
             </li> 
             <li>
-              <Link href="#">Update Jobs</Link>
+              <Link to="#">Update Jobs</Link>
             </li>
           </ul>
         </li>
        
         <li>
           <Link
-            href="#pageSubmenu"
+            to="#pageSubmenu"
             data-toggle="collapse"
             aria-expanded="false"
             class="dropdown-toggle"
@@ -49,25 +55,25 @@ const NavbarPage =(props)=> {
           >
           <ul class="collapse list-unstyled" id="pageSubmenu">
             <li>
-              <Link href="#">View Machines</Link>
+              <Link to="#">View Machines</Link>
             </li>
             <li>
-              <Link href="createBirth">Create Machine</Link>
+              <Link to="createBirth">Create Machine</Link>
             </li> <li>
-              <Link href="#">Edit Mchine</Link>
+              <Link to="#">Edit Mchine</Link>
             </li>
             <li>
-              <Link href="#">Delete Machine</Link>
+              <Link to="#">Delete Machine</Link>
             </li>     
           </ul>
         </li>
 
         <li>
-          <Link href="#">Policy</Link>
+          <Link to="#">Policy</Link>
         </li>
 
         <li>
-          <Link href="#">LogOut</Link>
+          <Link to="#">LogOut</Link>
         </li>
       </ul>
     </nav>

@@ -8,9 +8,7 @@ import { Link } from 'react-router-dom';
 const SingleFork = (props) => {
    
     return (
-    <Fragment>
-     <NavbarPage/>
-    
+    <Fragment> 
       {!props.location.fork?<div className="m-4"><Link to="/">....Opps Somwthing went wrong Click here</Link></div>:(  
       <div className="container pt-4">
         <form>
@@ -134,8 +132,6 @@ const SingleFork = (props) => {
           <Button design={"danger"}>   Delete</Button>
         </form>
       </div>
-    
-    
       )}
 </Fragment>
    );

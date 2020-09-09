@@ -4,9 +4,12 @@ import React,{useEffect} from 'react';
 import {getJobs} from '../../redux/data/dataActions';
 import Axios from 'axios';
 import NavbarPage from '../../components/navbar/navbar.component';
+import MaterialTableDemo from '../editJob/editTable';
 
-const Jobs = () => {
+const Jobs = ({match}) => {
+  console.log(match.url)
     const jobs = useSelector((state) => state.data.jobs);
+    // const users=useSelector((state)=>syt)
     const dispatch=useDispatch()
 
     useEffect(() => {
@@ -17,12 +20,11 @@ const Jobs = () => {
         
       }, [dispatch]);
 
-      console.log(jobs)
+    
   return (
       <>
-      <NavbarPage/>
-    <div className="container">
-      <h4 className="text-center  p-4 text-uppercase">Birth Certificates</h4>
+   
+      <h4 className="text-center  p-4 text-uppercase">All Jobs</h4>
       <table className="table table-hover shadow p-3 mb-5 bg-white rounded">
         <thead className="thead-dark">
           <tr>
@@ -44,7 +46,7 @@ const Jobs = () => {
           ) : (
             jobs.map((job) => {
               return (
-                <tr key={job.client}>
+                <tr key={job._id}>
                   <th scope="row" >{job.client}</th>
                   <td>{job.phone}</td>
                   <td>{job.assigned}</td>
@@ -52,7 +54,7 @@ const Jobs = () => {
                   <td>{job.status}</td>
                
                   <td>
-                  <button className="btn btn-success btn-sm"><Link to={{pathname:"/singlejob",job:job}} > Click to view </Link></button>  
+                  <button className="btn btn-success btn-sm"><Link to={`${match.url}/${job._id}`} jobs={jobs}> Click to view </Link></button>  
                   </td>
                 </tr>
               );
@@ -60,7 +62,9 @@ const Jobs = () => {
           )}
         </tbody>
       </table>
-    </div>
+ 
+   
+    
  </> );
 };
 export default Jobs;
