@@ -6,26 +6,10 @@ import { postCreateJob } from "../../redux/data/dataActions";
 import ErrorHandler from "../../components/errorHandler/errorHandler.component";
 import ModalPage from "../../components/modal/modal.component";
 
-// const ValidationMessage =(props)=>{
-//   if(!props.valid){
-//   return(<div className="error-msg"> {props.message}</div>)
-//   }
-//   return null;
-// }
+
 
 const CreateJob = () => {
-  //   const validateForm=()=>{
-  //     setformValid( clientValid&&
-  //       phoneValid&&
-  //       problemValid&&
-  //       assignedValid&&
-  //       assignedEmailValid&&
-  //       statusValid&&
-  //       mastTypeValid&&
-  //       attachmentsValid&&
-  //       sideShiftValid&&
-  //     )
-  //   }
+  
   const successMessage= useSelector(state=>state.data.successMessage)
   const dispatch = useDispatch();
 
@@ -35,17 +19,18 @@ const CreateJob = () => {
   const [assigned, setassigned] = useState("");
   const [assignedEmail, setassignedEmail] = useState("");
   const [status, setstatus] = useState("");
-
-  //   const [clientValid, setclientValid] = useState(false);
-  //   const [phoneValid, setphoneValid] = useState(false);
-  //   const [problemValid, setproblemValid] = useState(false);
-  //   const [assignedValid, setassignedValid] = useState(false);
-  //   const [assignedEmailValid, setassignedEmailValid] = useState(false);
-  //   const [statusValid, setstatusValid] = useState(false);
-  //   const [mastTypeValid, setMastTypeValid] = useState(false);
-  //   const [attachmentsValid, setAttachmentsValid] = useState(false);
-  //   const [sideShiftValid, setSideShiftValid] = useState(false);
-
+  const [hours, setHours] = useState("none");
+  const [make, setMake] = useState("none");
+  const [descriptionOfWork, setDescriptionOfWork] = useState("none");
+  const [parts, setParts] = useState("none");
+  const [consumables, setConsumables] = useState("none");
+  const [labourHrs, setLabourHrs] = useState("none");
+  const [travel, setTravel] = useState("none");
+  const [subTotal, setSubtotal] = useState("none");
+  const [vat, setVat] = useState("none");
+  const [total, setTotal] = useState("none");
+  const [otherComments, setOtherComments] = useState("none");
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     const record = {
@@ -55,6 +40,17 @@ const CreateJob = () => {
       assigned,
       assignedEmail,
       status,
+      hours,
+      make,
+      descriptionOfWork,
+      parts,
+      consumables,
+      labourHrs,
+      travel,
+      subTotal,
+      vat,
+      total,
+      otherComments
     };
 
     dispatch(postCreateJob(record));

@@ -51,17 +51,66 @@ router.post("/jobCreation", async (req, res) => {
     res.status(400).send({ message: "could not enter " });
   }
 });
-// router.post("/jobCreation", async (req, res) => {
-//   try {
-//     const emailAdress = req.body.assignedEmail;
-//     const problem = req.body.problem;
-//     const jobCreation = new JobSheetCreation(req.body);
-//     await jobCreation.save();
 
-// });
+router.post("/edit", (req, res) => {
+  const id = req.body._id;
+  const client = req.body.client;
+  const phone = req.body.phone;
+  const assigned = req.body.assigned;
+  const assignedEmail = req.body.assignedEmail;
+  const problem = req.body.problem;
+  const created_at = req.body.created_at;
+  const type = req.body.type;
+  const hours = req.body.hours;
+  const make = req.body.make;
+  const descriptionOfWork = req.body.descriptionOfWork;
+  const parts = req.body.parts;
+  const labourHrs = req.body.labourHrs;
+  const consumables = req.body.consumables;
+  const travel = req.body.travel;
+  const subTotal = req.body.subTotal;
+  const vat = req.body.vat;
+  const total = req.body.total;
+  const otherComments = req.body.otherComments;
+
+  JobSheet.findById(id)
+    .then((job) => {
+      job.client = client;
+      job.phone = phone;
+      job.assigned = assigned;
+      job.assignedEmail = assignedEmail;
+      job.problem = problem;
+      job.created_at = created_at;
+      job.type = type;
+      job.hours = hours;
+      job.make = make;
+      job.descriptionOfWork = descriptionOfWork;
+      job.parts = parts;
+      job.labourHrs = labourHrs;
+      job.consumables = consumables;
+      job.travel = travel;
+      job.subTotal = subTotal;
+      job.vat = vat;
+      job.total = total;
+      job.otherComments = otherComments;
+
+      return job.save();
+    })
+    .then((res) => {
+      console.log("updated");
+      res.send({ message: "zvaita" });
+    });
+});
+
+router.post("/delete", (req, res) => {
+  const id = req.body._id;
+  JobSheet.findByIdAndRemove(id).then((res) => {
+    res.send({ message: "sucessfully deleted" });
+  });
+});
 
 router.get("/jobs", (req, res) => {
-  JobSheetCreation.find()
+  JobSheet.find()
     .then((jobs) => {
       console.log(jobs);
       res.send({ jobs });

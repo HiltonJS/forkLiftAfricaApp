@@ -1,9 +1,10 @@
 import React, { Fragment, useState } from "react";
 
 import NavbarPage from "../../components/navbar/navbar.component";
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {postInventoryData} from '../../redux/data/dataActions'
-import    ErrorHandler from '../../components/errorHandler/errorHandler.component'
+import  ErrorHandler from '../../components/errorHandler/errorHandler.component'
+import ModalPage from "../../components/modal/modal.component";
 
 
 
@@ -130,11 +131,14 @@ const CreateBirthPage = () => {
     dispatch(postInventoryData(record))
     console.log(record);
   };
-
+  const successMessage= useSelector(state=>state.data.successMessage)
   return (
     <Fragment>
          <ErrorHandler />
       <NavbarPage />
+      <ModalPage>
+        {successMessage}
+      </ModalPage>
       <div className="container pt-4">
         <form>
           <div class="form-row">

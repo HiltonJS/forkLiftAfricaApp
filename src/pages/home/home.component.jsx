@@ -28,9 +28,7 @@ const Home=()=> {
         <Fragment>
           
             <div className="container">
-           
-            { inventory.length===0?<Animation/>:<MusicTable inventory={inventory}/>  }
-            
+            {inventory.length===0?<Animation/>:<MusicTable inventory={inventory}/>  }
             </div>
          
         </Fragment>

@@ -25,13 +25,14 @@ export const dataReducer = (state = initialState, action) => {
       };
     case SET_JOBS:
       return {
-        state,
+        ...state,
         jobs: action.payload,
       };
     case SET_DATA:
       return {
         ...state,
         inventory: action.payload,
+        loading: false,
       };
     case POST_DATA:
       return {

@@ -24,7 +24,10 @@ export const getJobs = () => (dispatch) => {
       dispatch({ type: SET_JOBS, payload: res.data.jobs });
     })
     .catch((err) => {
-      console.log(err);
+      dispatch({
+        type: SET_JOBS,
+        payload: [],
+      });
     });
 };
 

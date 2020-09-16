@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./App.css";
 import Home from "./pages/home/home.component";
@@ -20,6 +20,12 @@ import Jobs from "./pages/jobs/jobs.component";
 
 import SingleJob from "./pages/singleJob/singleJob.component";
 import NavbarPage from "./components/navbar/navbar.component";
+import AddUser from "./pages/addUser/addUser";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./redux/user/userActions";
+import { getJobs } from "./redux/data/dataActions";
+
+import Fulfil from "./pages/fulfil/fulfil";
 
 axios.defaults.baseURL = "http://localhost:4003";
 
@@ -31,6 +37,8 @@ if (token) {
     window.location.href = "/login";
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
+    store.dispatch(setUser());
+
     axios.defaults.headers.common["Authrization"] = token;
   }
 } else {
@@ -38,19 +46,24 @@ if (token) {
 }
 
 function App() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {}, [dispatch]);
+  console.log(user);
   return (
     <>
-      <Switch></Switch>
-      <NavbarPage>
+      <NavbarPage user={user}>
         <Switch>
           <AuthRoute exact path="/" component={Home} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/signup" component={SignUp} />
           <AuthRoute exact path="/createBirth" component={CreateBirthPage} />
-
+          <AuthRoute exact path="/addUser" component={AddUser} />
           <AuthRoute exact path="/singleMachine" component={SingleFork} />
           <AuthRoute exact path="/createJob" component={CreateJob} />
           <AuthRoute exact path="/jobs" component={Jobs} />
+          <AuthRoute exact path="/Fulfiljobs" component={Fulfil} />
           <AuthRoute exact path="/jobs/:_id" component={SingleJob} />
         </Switch>
       </NavbarPage>

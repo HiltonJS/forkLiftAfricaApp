@@ -5,6 +5,9 @@ import {
   SET_ERROR,
   LOADING_USER,
   UNSET_ERROR,
+  ADD_USER,
+  UNSET_MODAL,
+  SET_USER,
 } from "../types";
 import axios from "axios";
 
@@ -13,7 +16,7 @@ export const login = (userdata, history) => (dispatch) => {
   axios
     .post("users/login", userdata)
     .then((res) => {
-      setAuthorisedHeader(res.data.token);
+      setAuthorisedHeader(res.data.token, res.data.user);
       dispatch({ type: SET_AUTHENTICATED, payload: res.data.user });
       history.push("/");
     })
@@ -28,11 +31,20 @@ export const signUp = (userData) => (dispatch) => {
   axios
     .post("/users", userData)
     .then((res) => {
+      dispatch({ type: ADD_USER, payload: res.data.message });
       console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
     });
+};
+export const setUser = () => (dispatch) => {
+  var user = JSON.parse(localStorage.getItem("user"));
+  console.log(user);
+  dispatch({ type: SET_USER, payload: user });
+};
+export const changeModal = () => (dispatch) => {
+  dispatch({ type: UNSET_MODAL });
 };
 
 export const logout = () => (dispatch) => {
@@ -46,8 +58,11 @@ export const errorHandler = () => (dispatch) => {
   console.log("cancel");
 };
 
-const setAuthorisedHeader = (token) => {
+const setAuthorisedHeader = (token, user) => {
+  const User = user;
   const FBIToken = `Bearer ${token}`;
+  localStorage.setItem("user", JSON.stringify(User));
+
   localStorage.setItem("FBIToken", FBIToken);
   axios.defaults.headers.common["Authorization"] = FBIToken;
 };

@@ -1,26 +1,49 @@
 import React from "react";
 import {Link} from "react-router-dom"
 
+import {useSelector,useDispatch} from 'react-redux'
+import {  logout  } from "../../redux/user/userActions";
+
+
 
 
 const NavbarPage =(props)=> {
+
+  const dispatch=useDispatch();
+
+  const handleLogOut=()=>{
+      dispatch(logout())
+  }
+
+  const user=props.user;
+
+
   return (
     <div class="wrapper">
     <nav id="sidebar">
       <div class="sidebar-header">
-        <h3>Bootstrap Slider</h3>
+        <h3>ForkLift Africa</h3>
+    
       </div>
       <ul class="lisst-unstyled components">
         <p>The Providers</p>
         <li>
           <Link to="/">Home</Link>
+          {
+            user.level==="techinician"?( <Link to="/Fulfiljobs">Open Jobs</Link>):(<></>)
+
+          }
+         
         </li>
         <li>
               <Link to="/jobs">View All Jobs </Link>
             </li>
-            <li>
-              <Link to="/createJob">Create Jobs</Link>
-            </li>
+            {props.user.level==="admin"?(
+ <li>
+ <Link to="/createJob">Create Jobs</Link>
+</li>):<></>
+            }
+           
         <li class="active">
           <Link
             to="#homeSubmenu"
@@ -69,11 +92,11 @@ const NavbarPage =(props)=> {
         </li>
 
         <li>
-          <Link to="#">Policy</Link>
+          <Link to="/addUser">Add User</Link>
         </li>
 
-        <li>
-          <Link to="#">LogOut</Link>
+        <li onClick={handleLogOut}>
+          <Link to="#" >LogOut</Link>
         </li>
       </ul>
     </nav>

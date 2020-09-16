@@ -19,7 +19,7 @@ const MusicTable = ({ inventory }) => {
           </tr>
         </thead>
         <tbody>
-          {inventory.length === 0 ? (
+          {inventory=== [] ? (
             <tr>
               <th></th>
               <th></th>

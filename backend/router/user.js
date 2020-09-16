@@ -8,7 +8,10 @@ router.post("/users", async (req, res) => {
     const user = new User(req.body);
     await user.save();
     const token = await user.generateAuthToken();
-    res.status(201).send({ user, token });
+    res
+      .status(201)
+      .send({ user, token, message: "Successfully Added a user!" });
+    // console.log(user);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -17,7 +20,7 @@ router.post("/users", async (req, res) => {
 router.get("/users", (req, res) => {
   User.find()
     .then((users) => {
-      console.log(users);
+      // console.log(users);
       res.send({ users });
     })
     .catch((err) => {
@@ -34,6 +37,7 @@ router.post("/users/login", async (req, res, next) => {
     }
     const token = await user.generateAuthToken();
     res.send({ user, token });
+    console.log(user);
   } catch (error) {}
 });
 module.exports = router;
