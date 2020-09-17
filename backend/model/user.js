@@ -11,6 +11,11 @@ const userSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
+  surname: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   level: {
     type: String,
     required: true,
@@ -22,10 +27,45 @@ const userSchema = mongoose.Schema({
     unique: true,
     lowercase: true,
   },
+  address: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
+  city: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
+  states: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
+  zip: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
+  company: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+  },
   password: {
     type: String,
     required: true,
-    minLength: 7,
   },
   tokens: [
     {

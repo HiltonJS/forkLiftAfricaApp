@@ -72,6 +72,7 @@ router.post("/edit", (req, res) => {
   const vat = req.body.vat;
   const total = req.body.total;
   const otherComments = req.body.otherComments;
+  const status = req.body.status;
 
   JobSheet.findById(id)
     .then((job) => {
@@ -93,26 +94,34 @@ router.post("/edit", (req, res) => {
       job.vat = vat;
       job.total = total;
       job.otherComments = otherComments;
+      job.status = status;
 
       return job.save();
     })
-    .then((res) => {
+    .then(() => {
+      res.status(201).send({ message: "zvaita" });
       console.log("updated");
-      res.send({ message: "zvaita" });
+    })
+    .catch((err) => {
+      console.log(err);
     });
 });
 
 router.post("/delete", (req, res) => {
   const id = req.body._id;
-  JobSheet.findByIdAndRemove(id).then((res) => {
-    res.send({ message: "sucessfully deleted" });
-  });
+  console.log(req.body._id);
+  JobSheet.deleteOne({ _id: id })
+    .then((data) => {
+      res.send({ message: "done" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.get("/jobs", (req, res) => {
   JobSheet.find()
     .then((jobs) => {
-      console.log(jobs);
       res.send({ jobs });
     })
     .catch((err) => {
@@ -123,7 +132,6 @@ router.get("/jobs", (req, res) => {
 router.get("/inventory", (req, res) => {
   Inventory.find()
     .then((inventory) => {
-      console.log(inventory);
       res.send({ inventory });
     })
     .catch((err) => {

@@ -26,6 +26,7 @@ import { setUser } from "./redux/user/userActions";
 import { getJobs } from "./redux/data/dataActions";
 
 import Fulfil from "./pages/fulfil/fulfil";
+import EditJob from "./pages/editJob/editTable";
 
 axios.defaults.baseURL = "http://localhost:4003";
 
@@ -65,6 +66,7 @@ function App() {
           <AuthRoute exact path="/jobs" component={Jobs} />
           <AuthRoute exact path="/Fulfiljobs" component={Fulfil} />
           <AuthRoute exact path="/jobs/:_id" component={SingleJob} />
+          <AuthRoute exact path="/jobs/:_id/:_id" component={EditJob} />
         </Switch>
       </NavbarPage>
     </>

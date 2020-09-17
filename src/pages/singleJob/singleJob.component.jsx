@@ -1,19 +1,25 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import React, { useEffect } from "react";
-import { getJobs } from "../../redux/data/dataActions";
+import { deleteJob, getJobs } from "../../redux/data/dataActions";
 import Axios from "axios";
 import "./singleJob.css";
 import moment from "moment";
 
 const SingleJob = ({ match }) => {
   const jobs = useSelector((state) => state.data.jobs);
-  const id = match.params._id;
+  const _id = match.params._id;
+  const dispatch=useDispatch()
   const job = jobs.filter((job) => {
-    return job._id === id;
+    return job._id === _id;
   });
-  console.log(job);
+  
 
+ const handleDelete=(event)=>{
+   event.preventDefault()
+   const id={_id}
+   dispatch(deleteJob(id))
+  }
   return (
     <>
       {job.map((jb) => (
@@ -70,13 +76,14 @@ const SingleJob = ({ match }) => {
                 </div>
               </div>
               <div class="col-md-2">
-                <input
+              <Link to={`${match.url}/${jb._id}`} > <input
                   type="submit"
                   class="profile-edit-btn"
                   name="btnAddMore"
-                  value="Edit Profile"
-                />
+                  value="Edit Job"
+                /></Link> 
               </div>
+           
             </div>
             <div class="row">
               <div class="col-md-4">
@@ -181,6 +188,9 @@ const SingleJob = ({ match }) => {
               </div>
             </div>
           </form>
+          <button type="submit" onClick={handleDelete} class="btn btn-danger ">
+             DELETE
+          </button>
         </div>
       ))}
     </>

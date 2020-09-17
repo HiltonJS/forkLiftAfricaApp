@@ -11,3 +11,4 @@ export const POST_JOB = "POST_JOB";
 export const UNSET_ERROR = "UNSET_ERROR";
 export const UNSET_MODAL = "UNSET_MODAL";
 export const ADD_USER = "ADD_USER";
+export const SET_USERS = "SET_USERS";

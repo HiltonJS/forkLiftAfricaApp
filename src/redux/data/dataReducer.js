@@ -5,6 +5,7 @@ import {
   SET_JOBS,
   POST_JOB,
   UNSET_MODAL,
+  SET_USERS,
 } from "../types";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   successMessage: "",
   jobs: [],
   modal: false,
+  users: [],
 };
 
 export const dataReducer = (state = initialState, action) => {
@@ -28,6 +30,13 @@ export const dataReducer = (state = initialState, action) => {
         ...state,
         jobs: action.payload,
       };
+    case SET_USERS:
+      return {
+        ...state,
+        loading: false,
+        users: action.payload,
+      };
+
     case SET_DATA:
       return {
         ...state,
