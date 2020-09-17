@@ -5,12 +5,13 @@ import {getData} from '../../redux/data/dataActions';
 import {useDispatch,useSelector} from 'react-redux';
 import ErrorHandler from '../../components/errorHandler/errorHandler.component';
 import Axios from 'axios';
-import Loading from '../../components/loading/loading.component';
-import Animation from '../../components/skeleton/skeleton.component';
+import Loading from '../../components/skeleton/skeleton.component';
+
 
 const Home=()=> {
 
     const inventory = useSelector((state) => state.data.inventory);
+    const loading=true
     const dispatch=useDispatch()
 
     useEffect(() => {
@@ -28,7 +29,7 @@ const Home=()=> {
         <Fragment>
           
             <div className="container">
-            {inventory.length===0?<Animation/>:<MusicTable inventory={inventory}/>  }
+            {loading?<Loading/>:<MusicTable inventory={inventory}/>  }
             </div>
          
         </Fragment>

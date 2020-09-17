@@ -1,22 +1,27 @@
 import React from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
-import { makeStyles } from '@material-ui/core/styles';
+import './skeleton.css'
 
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
 
-const Animations=()=> {
-  const classes = useStyles();
+
+
+const Loading=()=> {
+
   return (
-    <div className={classes.root}>
-      <Skeleton />
-      <Skeleton animation={false} />
-      <Skeleton animation="wave" />
+    <div class="body1">
+         <div id="circle">
+    <div class="loader">
+      <div class="loader">
+          <div class="loader">
+             <div class="loader">
+  
+             </div>
+          </div>
+      </div>
     </div>
+  </div>
+    </div>
+  
   );
 }
 
-export default Animations
+export default Loading
